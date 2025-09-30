@@ -1,0 +1,74 @@
+site_name: ODBC Tutorial
+
+copyright: Copyright &copy; 2025 Redvers Davies
+#edit_uri: edit/main/docs/
+repo_url: https://github.com/redvers/odbc-tutorial/
+site_url: https://redvers.github.io/odbc-tutorial
+use_directory_urls: false
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.snippets:
+      base_path: ['code-samples']
+      check_paths: true
+      dedent_subsections: true
+  - smarty
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - ezlinks
+# - htmlproofer:
+#     raise_error: True
+#     raise_error_excludes:
+#       429: ["https://github.com/ponylang", "https://web.archive.org/*"]
+#       404: ["https://github.com/ponylang"]
+#       403: ["https://readthedocs.org"]
+
+theme:
+  name: material
+
+  favicon: assets/logo.png
+
+  features:
+    - content.code.copy
+    - content.code.select
+    - navigation.footer
+    - navigation.instant
+    - navigation.indexes
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+
+  icon:
+    repo: fontawesome/brands/github
+
+  logo: assets/logo.png
+
+  palette:
+    # Light mode
+    - scheme: default
+      primary: brown
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+
+    # Dark mode
+    - scheme: slate
+      primary: brown
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Home: "index.md"
