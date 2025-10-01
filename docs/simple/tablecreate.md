@@ -41,7 +41,7 @@ Now lets create our function to make these (temporary) tables.
          """
          CREATE TEMPORARY TABLE play (
           id BIGSERIAL,
-          name BIGSERIAL NOT NULL
+          name VARCHAR(30) NOT NULL
          );
          """)?
       .> direct_exec(
