@@ -79,6 +79,7 @@ nav:
   - The "Simple" API:
     - Overview: "simple/index.md"
     - Including pony-odbc: "simple/stage1.md"
+    - Connecting To Our Database: "simple/connecting.md"
     - Creating Our Table: "simple/tablecreate.md"
     - About SQL Types: "simple/sqltypes.md"
     - Populating Our Table: "simple/populating.md"
