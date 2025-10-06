@@ -1,57 +1,27 @@
-# Simple API Tutorial
+# Simple API Overview
 
-In this tutorial we're going to write a somewhat simple database application to store and query lines from two of William Shakespeare's plays.
+The main purpose of this Simple API is to provide 95% of the functionality required to write any database integration you need without having to expose yourself to any of the sharp corners of the C API.
 
-Admittedly, the Schema will be overengineered for demonstration reasons.
+## Philosophy
 
-In our application we will check to see if our table exists, and if not, we'll create it.
+We have tried to stay consistent in the design of this API in order to try and make writing your code as unobtrusive as possible. Here are the principles we have tried to follow:
 
-Then we will parse the JSON files in the data/ directory and populate the tables.
+### Transactions and Code Blocks
 
-Then we will do various queries on our data.
+When one writes a database application it is fairly common for us to batch SQL Statements into transactions. The reason for this is because we want these statements to either succeed or fail as one unit. If the statements succeed, then we `commit` the transaction. If they fail, we `rollback` the transaction, and it's like none of the statements were executed at all.
 
-## Schema
+Pony has a mechanism that is well suited to that - partial functions!
 
-![Schema Image](../assets/shakespeare-schema.png)
-
-The tables are defined as follows:
-
-### Table: play
-
-```sql
-CREATE TABLE play (
- id BIGSERIAL,
- name BIGSERIAL NOT NULL
-);
-
-ALTER TABLE play ADD CONSTRAINT play_pkey PRIMARY KEY (id);
+```pony
+try
+  statement_handle.direct_exec("some SQL command")?
+  statement_handle.direct_exec("some other SQL command")?
+  statement_handle.direct_exec("etc etc etc ...")?
+  database_handle.commit()
+else
+  database_handle.rollback()
+end
 ```
 
-### Table: player
+### SQL Datatypes
 
-```sql
-CREATE TABLE player (
- id BIGSERIAL,
- name VARCHAR(20) NOT NULL
-);
-
-ALTER TABLE player ADD CONSTRAINT player_pkey PRIMARY KEY (id);
-```
-
-### Table: line
-
-```sql
-CREATE TABLE line (
- id BIGSERIAL,
- id_play INTEGER,
- id_player INTEGER,
- playerlinenumber INTEGER,
- actsceneline VARCHAR(15),
- playerline VARCHAR(127) NOT NULL DEFAULT 'NULL'
-);
-
-ALTER TABLE line ADD CONSTRAINT line_pkey PRIMARY KEY (id);
-
-ALTER TABLE line ADD CONSTRAINT line_id_play_fkey FOREIGN KEY (id_play) REFERENCES play(id);
-ALTER TABLE line ADD CONSTRAINT line_id_player_fkey FOREIGN KEY (id_player) REFERENCES player(id);
-```

@@ -38,29 +38,29 @@ Now lets create our function to make these (temporary) tables.
 ```pony
   fun create_tables(sth: ODBCStmt)? =>
       .> direct_exec(
-         "
+         """
          CREATE TEMPORARY TABLE play (
           id BIGSERIAL,
           name VARCHAR(30) NOT NULL
          );
-         ")?
+         """)?
       .> direct_exec(
-         "
+         """
          ALTER TABLE play ADD CONSTRAINT play_pkey PRIMARY KEY (id);
-         ")?
+         """)?
       .> direct_exec(
-         "
+         """
          CREATE TEMPORARY TABLE player (
           id BIGSERIAL,
           name VARCHAR(20) NOT NULL
          );
-         ")?
+         """)?
       .> direct_exec(
-         "
+         """
          ALTER TABLE player ADD CONSTRAINT player_pkey PRIMARY KEY (id);
-         ")?
+         """)?
       .> direct_exec(
-         "
+         """
          CREATE TEMPORARY TABLE line (
           id BIGSERIAL,
           id_play INTEGER,
@@ -69,17 +69,17 @@ Now lets create our function to make these (temporary) tables.
           actsceneline VARCHAR(15),
           playerline VARCHAR(127) NOT NULL
          );
-         ")?
+         """)?
       .> direct_exec(
-         "
+         """
          ALTER TABLE line ADD CONSTRAINT line_pkey PRIMARY KEY (id);
-         ")?
+         """)?
       .> direct_exec(
-         "
+         """
          ALTER TABLE line ADD CONSTRAINT line_id_play_fkey FOREIGN KEY (id_play) REFERENCES play(id);
-         ")?
+         """)?
       .> direct_exec(
-         "
+         """
          ALTER TABLE line ADD CONSTRAINT line_id_player_fkey FOREIGN KEY (id_player) REFERENCES player(id);
-         ")?
+         """)?
 ```

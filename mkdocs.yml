@@ -77,7 +77,8 @@ nav:
     - What You Need: "start/needs.md"
     - Which API Should I Use?: "start/which.md"
   - The "Simple" API:
-    - Overview: "simple/index.md"
+    - Overview: "simple/tutorial.md"
+    - Tutorial Schema: "simple/tutorial.md"
     - Including pony-odbc: "simple/stage1.md"
     - Connecting To Our Database: "simple/connecting.md"
     - Creating Our Table: "simple/tablecreate.md"
