@@ -78,6 +78,15 @@ nav:
     - Which API Should I Use?: "start/which.md"
   - The "Simple" API:
     - Overview: "simple/index.md"
+    - Tutorial Schema: "simple/tutorial.md"
+    - Including pony-odbc: "simple/stage1.md"
+    - Connecting To Our Database: "simple/connecting.md"
+    - Creating Our Table: "simple/tablecreate.md"
+    - About SQL Types: "simple/sqltypes.md"
+    - Populating Our Table: "simple/populating.md"
+    - Simple Queries: "simple/queries.md"
+    - Transactions, Commits, and Rollbacks: "simple/transactions.md"
+    - Implementing Custom Types: "simple/custom-types.md"
   - The "Raw" API:
     - Overview: "raw/index.md"
   - The "ORM" API:
