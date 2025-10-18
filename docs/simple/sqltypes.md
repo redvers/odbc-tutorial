@@ -15,7 +15,7 @@ As mentioned previously, all data is written in and out of the database via text
 
 For every SQL Datatype we create we have to also support a Nullable version. Instead of doing this by defining duplicate types for everything, we chose instead to take the following approach:
 
-## Reading NULLs
+### Reading NULLs
 
 ```pony
 var my_sql_integer: SQLInteger = SQLInteger
@@ -35,7 +35,7 @@ If your schema has marked a column as `NOT NULL`, then you can safely call `read
 
 If however you try to `read()?` the value directly without testing for NULL and it is NULL, the function will error.
 
-## Writing NULLs
+### Writing NULLs
 
 All pony SQL Types default to NULL, so all that needs be done is to create your object and not set a value.
 
