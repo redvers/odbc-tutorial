@@ -10,7 +10,7 @@ red@panic:~/projects/psql-demo$ corral add github.com/redvers/pony-odbc.git --ve
 red@panic:~/projects/psql-demo$ corral fetch
 git cloning github.com/redvers/pony-odbc.git into /home/red/projects/psql-demo/_repos/github_com_redvers_pony_odbc_git
 git checking out @0.3.0 into /home/red/projects/psql-demo/_corral/github_com_redvers_pony_odbc
-red@panic:~/projects/psql-demo$ 
+red@panic:~/projects/psql-demo$
 ```
 
 Let's create a very minimal Makefile
@@ -40,7 +40,7 @@ Now go ahead and run make, and run ldd to double-check that the library linked c
 red@panic:~/projects/psql-demo$ make
 corral run -- ponyc -d
   exit: Exited(0)
-  out: 
+  out:
   err: Building builtin -> /home/red/.local/share/ponyup/ponyc-release-0.59.0-x86_64-linux-ubuntu24.04/packages/builtin
 Building . -> /home/red/projects/psql-demo
 Building pony-odbc -> /home/red/projects/psql-demo/_corral/github_com_redvers_pony_odbc/pony-odbc
@@ -72,8 +72,7 @@ red@panic:~/projects/psql-demo$ ldd ./psql-demo
         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007e3676400000)
         /lib64/ld-linux-x86-64.so.2 (0x00007e36767fd000)
         libltdl.so.7 => /lib/x86_64-linux-gnu/libltdl.so.7 (0x00007e3676619000)
-red@panic:~/projects/psql-demo$ 
+red@panic:~/projects/psql-demo$
 ```
 
 Note that libodbc.so.2 is linked into our executable.
-
