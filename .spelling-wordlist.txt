@@ -1,5 +1,6 @@
 API
 APIs
+autocommit
 BIGINT
 Datatypes
 DBC
@@ -10,6 +11,7 @@ DSN
 DSNs
 ENV
 hostname
+ie
 ini
 iODBC
 jdbc
@@ -38,13 +40,16 @@ RDBMS
 schemas
 se
 SMALLINT
+sth
 SQLBigInteger
 SQLFloat
 SQLInteger
+SQLNull
 SQLReal
 SQLSmallInteger
 SQLState
 SQLStates
+SQLTables
 SQLVarchar
 STMT
 targeting
