@@ -1,31 +1,31 @@
 # Simple Queries
 
-Let's write a simple function to query the database for the id (I64) for a specific play in the play table.
+Let's write a simple function to query the database for the id (I64) for a row with a specific name:
 
 ## Preparing the Query
 
-A reminder that our tables schema looks like this:
+A reminder that the part of the table we're interested in looks like this:
 
 ```sql
-CREATE TEMPORARY TABLE play (
+CREATE TABLE psqldemo (
   id BIGSERIAL,
-  name VARCHAR(30) UNIQUE NOT NULL
-);
+  name VARCHAR(254) UNIQUE NOT NULL,
+  ⋮
 ```
 
 In order to fulfil our function, we will need to provide a SQLVarchar _in_, and a SQLBigInteger _out_.
 
 ```pony
-fun play_id_from_name(sth: ODBCStmt, queryname: String): I64 ? -=>
+fun id_from_name(sth: ODBCStmt, qname: String): I64 ? -=>
   var id: SQLBigInteger = SQLBigInteger
-  var name: SQLVarchar = SQLVarchar(31)
+  var name: SQLVarchar = SQLVarchar(254)
 ```
 
 Like before, we need to bind our name _parameter_ to our query using `bind_parameter()?`. In addition, we need to bind a _column_ for every column that will be in the query's result set.  We do this using the somewhat intuitive `bind_column()?` function:
 
 ```pony
   sth
-    .> prepare("select id from play where name = ?")?
+    .> prepare("select id from psqldemo where name = ?")?
     .> bind_parameter(name)?
     .> bind_column(id)?
 ```
@@ -33,8 +33,7 @@ Like before, we need to bind our name _parameter_ to our query using `bind_param
 Then we can write our value to the name _parameter_, execute the query and fetch the (singular, due to name being UNIQUE) result back.
 
 ```pony
-  name.write(queryname)
-
+  name.write(qname)
   sth.execute()?
 
   if (sth.fetch()?) then
@@ -50,13 +49,16 @@ NOTE: There is a trap here. You *must* check the return value of `fetch()?`. If 
 Let's add some example calls to our Main.create function to test this:
 
 ```pony
-  create_tables(sth)?
-  populate_play_table(sth)?
-  Debug.out(" R&J: " + play_id_from_name(sth, "Romeo and Juliet")?.string())
-  Debug.out("MSND: " + play_id_from_name(sth, "A Midsummer nights dream")?.string())
+  let sth: ODBCStmt = dbh.stmt()?
   try
-    play_id_from_name(sth, "I don't exist")?
+    create_table(sth)?
+    Debug.out("Successfully created table: psqldemo")
+    populate_demo_table(sth)?
+    Debug.out("Successfully written two rows")
+
+    Debug.out("First Simple Row: " + id_from_name(sth, "First Simple Row")?.string())
+//  dbh.commit()?
   else
-    Debug.out("I don't exist doesn't exist™")
+//  dbh.rollback()?
   end
 ```
