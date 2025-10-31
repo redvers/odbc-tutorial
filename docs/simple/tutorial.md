@@ -1,57 +1,38 @@
 # Simple API Tutorial
 
-In this tutorial we're going to write a somewhat simple database application to store and query lines from two of William Shakespeare's plays.
+In this tutorial we're going to:
 
-Admittedly, the Schema will be over-engineered for demonstration reasons.
-
-In our application we will check to see if our table exists, and if not, we'll create it.
-
-Then we will parse the JSON files in the data/ directory and populate the tables.
-
-Then we will do various queries on our data.
+- Create a table
+- Write to a table
+- Perform queries
+- Extend our program with three custom SQL types that are unsupported by the ODBC standard.
 
 ## Schema
 
-![Schema Image](../assets/shakespeare-schema.png)
+Our very simple table (psqldemo) is defined as follows:
 
-The tables are defined as follows:
+| Column Name  | SQLType        | Nullable | Default           |
+|--------------|----------------|----------|-------------------|
+| id           | bigint         | No       | Autoincrements    |
+| name         | varchar(254)   | No       |                   |
+| xmlfragment  | xml            | Yes      | NULL              |
+| jsonfragment | json           | Yes      | NULL              |
+| insert\_ts   | timestamp w/TZ | No       | Current Timestamp |
 
-### Table: play
+The first two fields use standard ODBC SQL datatypes.  The last three we will be building custom SQL types for.
 
-```sql
-CREATE TABLE play (
- id BIGSERIAL,
- name BIGSERIAL NOT NULL
-);
+### Table: psqldemo
 
-ALTER TABLE play ADD CONSTRAINT play_pkey PRIMARY KEY (id);
-```
-
-### Table: player
-
-```sql
-CREATE TABLE player (
- id BIGSERIAL,
- name VARCHAR(20) NOT NULL
-);
-
-ALTER TABLE player ADD CONSTRAINT player_pkey PRIMARY KEY (id);
-```
-
-### Table: line
+The SQL required to create our example table is below. Usually the tables are created independently of applications, but for completeness - we will have our program create our table.
 
 ```sql
-CREATE TABLE line (
- id BIGSERIAL,
- id_play INTEGER,
- id_player INTEGER,
- playerlinenumber INTEGER,
- actsceneline VARCHAR(15),
- playerline VARCHAR(127) NOT NULL DEFAULT 'NULL'
+CREATE TABLE psqldemo (
+  id BIGSERIAL,
+  name VARCHAR(254) UNIQUE NOT NULL,
+  xmlfragment XML,
+  jsonfragment JSON,
+  insert_ts TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT current_timestamp
 );
 
-ALTER TABLE line ADD CONSTRAINT line_pkey PRIMARY KEY (id);
-
-ALTER TABLE line ADD CONSTRAINT line_id_play_fkey FOREIGN KEY (id_play) REFERENCES play(id);
-ALTER TABLE line ADD CONSTRAINT line_id_player_fkey FOREIGN KEY (id_player) REFERENCES player(id);
+ALTER TABLE psqldemo ADD CONSTRAINT psqldemo_pkey PRIMARY KEY (id);
 ```

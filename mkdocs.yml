@@ -81,12 +81,15 @@ nav:
     - Tutorial Schema: "simple/tutorial.md"
     - Including pony-odbc: "simple/stage1.md"
     - Connecting To Our Database: "simple/connecting.md"
+#    - Transactions, Commits, and Rollbacks: "simple/transactions.md"
     - Creating Our Table: "simple/tablecreate.md"
     - About SQL Types: "simple/sqltypes.md"
     - Populating Our Table: "simple/populating.md"
     - Simple Queries: "simple/queries.md"
-    - Transactions, Commits, and Rollbacks: "simple/transactions.md"
-    - Implementing Custom Types: "simple/custom-types.md"
+    - Why Custom Types: "simple/custom-types.md"
+    - Custom Type Architecture: "simple/custom-types-architecture.md"
+    - Implementing SQLJson: "simple/custom-types-json.md"
+    - Testing SQLJson: "simple/custom-types-testing.md"
   - The "Raw" API:
     - Overview: "raw/index.md"
   - The "ORM" API:
