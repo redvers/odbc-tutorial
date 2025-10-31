@@ -83,7 +83,7 @@ There are a few functions in `SQLType` that are automatically available to eithe
 |-------------------------|----------------------------------------------------------------|
 | reset(): Bool           | Resets and zeros the buffer to its initial state.              |
 | string(): String iso^   | Returns the data as delivered by the database as a String.     |
-| array(): Array[U8] iso^ | Returns the data as delieverd by the database as an Array[U8]. |
+| array(): Array[U8] iso^ | Returns the data as delivered by the database as an Array[U8]. |
 | is\_null(): Bool        | Returns if the buffer was populated by a SQL Null              |
 | null()                  | Sets the buffer to represent a SQL Null                        |
 

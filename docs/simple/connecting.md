@@ -14,7 +14,7 @@ A database transaction is a sequence of one or more operations—such as reading
 
 ODBC by default commits every command you execute after you execute it.  This is called "autocommit".
 
-Transactions are a best-practice, so we are going to utilize them in our tutorial from the very begining.
+Transactions are a best-practice, so we are going to utilize them in our tutorial from the very beginning.
 
 In order to implement transactions, we need to disable autocommit.
 

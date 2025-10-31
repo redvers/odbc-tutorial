@@ -25,7 +25,6 @@ The first two fields use standard ODBC SQL datatypes.  The last three we will be
 
 The SQL required to create our example table is below. Usually the tables are created independently of applications, but for completeness - we will have our program create our table.
 
-
 ```sql
 CREATE TABLE psqldemo (
   id BIGSERIAL,
