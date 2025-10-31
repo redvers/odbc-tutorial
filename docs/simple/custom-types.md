@@ -60,4 +60,4 @@ But, wouldn't it be better if we could create SQL Types that give us legitimate 
   fun read(): (PosixDate, String iso^) ?
 ```
 
-In the following pages, we will fully implement SQLJson, compatable with `ponylang/json`.
+In the following pages, we will fully implement SQLJson, compatible with `ponylang/json`.

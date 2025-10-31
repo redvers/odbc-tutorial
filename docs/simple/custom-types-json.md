@@ -15,7 +15,7 @@ red@panic:~/project/psql-demo$ corral fetch
 
 We need to include the `ponylang/json` dependency, ensure that the class uses the `SQLType` trait, and create the boilerplate code.
 
-Unfortutely, since Json can be any arbitrary size, we will need our end-user to declare the size of the buffer they wish to use.
+Unfortunately, since Json can be any arbitrary size, we will need our end-user to declare the size of the buffer they wish to use.
 
 Here's what we start with:
 

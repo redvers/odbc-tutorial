@@ -2,10 +2,14 @@ accessors
 API
 APIs
 autocommit
+Autoincrements
 BIGINT
+bigint
 Bool
 CBoxedArray
 Datatypes
+datatypes
+demarshallers
 DBC
 DBD
 DBI
@@ -22,6 +26,7 @@ iso
 iODBC
 jdbc
 json
+jsonfragment
 Json
 JsonDoc
 JSON
@@ -68,7 +73,12 @@ SQLVarchar
 SQLVarchars
 STMT
 targeting
+TZ
+uncommented
 unixODBC
 unix
 Unmarshalling
 VARCHAR
+varchar
+xml
+xmlfragment
